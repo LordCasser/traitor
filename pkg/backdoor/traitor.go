@@ -6,8 +6,7 @@ import (
 	"os"
 	"path/filepath"
 	"syscall"
-
-	"github.com/liamg/traitor/pkg/random"
+	"traitor/utils"
 
 	"golang.org/x/sys/unix"
 )
@@ -61,7 +60,7 @@ func Install() (*string, error) {
 	var candidates []string
 	candidates = append(candidates, backdoorFilenames...)
 	for i := 0; i < 10; i++ {
-		candidates = append(candidates, random.Filename())
+		candidates = append(candidates, utils.Filename())
 	}
 	var path string
 	for _, name := range candidates {

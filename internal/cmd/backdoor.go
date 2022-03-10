@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/liamg/traitor/pkg/backdoor"
+	"traitor/pkg/backdoor"
 
 	"github.com/spf13/cobra"
 )

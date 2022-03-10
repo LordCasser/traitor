@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/liamg/traitor/internal/cmd"
+	"traitor/internal/cmd"
 )
 
 func main() {

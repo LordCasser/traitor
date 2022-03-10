@@ -5,13 +5,12 @@ import (
 	"fmt"
 	"os"
 	"os/user"
+	"traitor/utils"
+	"traitor/utils/state"
 
-	"github.com/liamg/traitor/internal/version"
+	"traitor/internal/version"
 
-	"github.com/liamg/traitor/pkg/logger"
-	"github.com/liamg/traitor/pkg/state"
-
-	"github.com/liamg/traitor/pkg/exploits"
+	"traitor/pkg/exploits"
 
 	"github.com/spf13/cobra"
 )
@@ -32,19 +31,19 @@ var rootCmd = &cobra.Command{
 	Use:   "traitor",
 	Short: "Traitor is a privilege escalation framework for Linux",
 	Long: `An extensible privilege escalation framework for Linux
-                Complete documentation is available at https://github.com/liamg/traitor`,
+                Complete documentation is available at https://traitor`,
 	Args: cobra.ExactArgs(0),
 	PreRun: func(_ *cobra.Command, args []string) {
 		fmt.Printf("\x1b[34m"+`
 
 ▀█▀ █▀█ ▄▀█ █ ▀█▀ █▀█ █▀█
 ░█░ █▀▄ █▀█ █ ░█░ █▄█ █▀▄ %s
-`+"\x1b[31mhttps://github.com/liamg/traitor\n\n", version.Version)
+`+"\x1b[31mhttps://traitor\n\n", version.Version)
 	},
 	Run: func(cmd *cobra.Command, args []string) {
 
 		ctx := context.Background()
-		baseLog := logger.New()
+		baseLog := utils.New()
 
 		if user, err := user.Current(); err == nil && user.Uid == "0" {
 			baseLog.Printf("You are already root.")
